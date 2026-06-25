@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="stripeClientFactory"
+          class="com.cci.hybris.stripe.services.factory.impl.DefaultStripeClientFactory"/>
+
+    <bean id="stripeConfigurationService"
+          class="com.cci.hybris.stripe.services.service.impl.DefaultStripeConfigurationService">
+        <constructor-arg ref="configurationService"/>
+    </bean>
+
+    <bean id="stripePaymentTransactionService"
+          class="com.cci.hybris.stripe.services.service.impl.DefaultStripePaymentTransactionService">
+        <constructor-arg ref="modelService"/>
+        <constructor-arg ref="flexibleSearchService"/>
+        <constructor-arg ref="timeService"/>
+    </bean>
+
+    <bean id="stripeCheckoutSessionService"
+          class="com.cci.hybris.stripe.services.service.impl.DefaultStripeCheckoutSessionService">
+        <constructor-arg ref="stripeClientFactory"/>
+        <constructor-arg ref="stripeConfigurationService"/>
+        <constructor-arg ref="stripePaymentTransactionService"/>
+    </bean>
+
+    <bean id="stripePaymentIntentService"
+          class="com.cci.hybris.stripe.services.service.impl.DefaultStripePaymentIntentService">
+        <constructor-arg ref="stripeClientFactory"/>
+        <constructor-arg ref="stripeConfigurationService"/>
+        <constructor-arg ref="stripePaymentTransactionService"/>
+    </bean>
+
+    <bean id="stripePaymentLifecycleService"
+          class="com.cci.hybris.stripe.services.service.impl.DefaultStripePaymentLifecycleService">
+        <constructor-arg ref="stripeClientFactory"/>
+        <constructor-arg ref="stripeConfigurationService"/>
+        <constructor-arg ref="stripePaymentTransactionService"/>
+    </bean>
+
+    <bean id="stripeWebhookService"
+          class="com.cci.hybris.stripe.services.service.impl.DefaultStripeWebhookService">
+        <constructor-arg ref="stripeClientFactory"/>
+        <constructor-arg ref="stripeConfigurationService"/>
+        <constructor-arg ref="stripePaymentTransactionService"/>
+    </bean>
+
+</beans>

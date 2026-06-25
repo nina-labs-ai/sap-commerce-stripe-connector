@@ -1,0 +1,78 @@
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <h1 class="mb-3">Stripe Payment Elements status</h1>
+      <p class="text-muted mb-4">
+        This page verifies the Stripe PaymentIntent after any required
+        authentication and then resumes the standard SAP Commerce order
+        placement flow.
+      </p>
+
+      <div *ngIf="isLoading" class="card">
+        <div class="card-body">
+          <p class="mb-0">
+            {{
+              isPlacingOrder
+                ? 'Payment confirmed. Placing the SAP Commerce order…'
+                : 'Refreshing Stripe Payment Elements status…'
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading && stripePaymentIntent" class="card">
+        <div class="card-body">
+          <div
+            class="alert mb-4"
+            [ngClass]="
+              isSuccessfulStatus()
+                ? 'alert-success'
+                : isPendingStatus()
+                  ? 'alert-warning'
+                  : 'alert-danger'
+            "
+          >
+            <strong>
+              {{
+                isSuccessfulStatus()
+                  ? 'Payment confirmed'
+                  : isPendingStatus()
+                    ? 'Payment still processing'
+                    : 'Payment not confirmed'
+              }}
+            </strong>
+            <span class="d-block mt-2">
+              Stripe PaymentIntent
+              <code>{{ stripePaymentIntent.id || paymentIntentId }}</code>
+              returned
+              <code>{{ stripePaymentIntent.status || 'unknown' }}</code>.
+            </span>
+          </div>
+
+          <dl class="row mb-4">
+            <dt class="col-sm-4">PaymentIntent</dt>
+            <dd class="col-sm-8">
+              <code>{{ stripePaymentIntent.id || paymentIntentId }}</code>
+            </dd>
+
+            <dt class="col-sm-4">Client reference</dt>
+            <dd class="col-sm-8">{{ intent?.clientReferenceId || 'n/a' }}</dd>
+
+            <dt class="col-sm-4">Amount</dt>
+            <dd class="col-sm-8">{{ intent?.formattedAmount || 'n/a' }}</dd>
+          </dl>
+
+          <p *ngIf="isPendingStatus()" class="mb-0 text-muted">
+            Stripe has not finished settling this payment yet. Refresh after the
+            payment completes or check whether the shopper still needs to finish
+            authentication.
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading && errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</section>

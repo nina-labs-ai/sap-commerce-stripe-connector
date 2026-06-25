@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+
+    <extension abstractclassprefix="Generated" classprefix="StripeFacades" jaloLogicFree="true" managername="StripeFacadesManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="stripefacades" usemaven="false">
+
+        <requires-extension name="commercefacades"/>
+        <requires-extension name="opffacades"/>
+        <requires-extension name="stripeservices"/>
+
+        <coremodule generated="true" manager="com.cci.hybris.stripe.facades.jalo.StripeFacadesManager" packageroot="com.cci.hybris.stripe.facades"/>
+
+    </extension>
+
+</extensioninfo>

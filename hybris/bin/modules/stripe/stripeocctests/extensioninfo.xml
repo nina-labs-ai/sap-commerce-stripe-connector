@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+       
+    <extension abstractclassprefix="Generated" classprefix="Stripeocctests" jaloLogicFree="true" managername="StripeocctestsManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="stripeocctests" usemaven="false">
+          
+      
+        <requires-extension name="commercewebservicestests"/>
+        <requires-extension name="stripeocc"/>
+
+        <coremodule generated="true" manager="com.cci.hybris.stripe.occtests.jalo.StripeocctestsManager" packageroot="com.cci.hybris.stripe.occtests"/>
+           
+    </extension>
+          
+
+</extensioninfo>

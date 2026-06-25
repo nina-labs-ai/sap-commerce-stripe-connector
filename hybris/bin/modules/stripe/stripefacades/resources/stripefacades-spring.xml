@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="stripeCheckoutFacade"
+          class="com.cci.hybris.stripe.facades.checkout.impl.DefaultStripeCheckoutFacade">
+        <property name="cartService" ref="cartService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="stripeCheckoutSessionService" ref="stripeCheckoutSessionService"/>
+        <property name="stripeConfigurationService" ref="stripeConfigurationService"/>
+        <property name="stripePaymentLifecycleService" ref="stripePaymentLifecycleService"/>
+        <property name="stripePaymentTransactionService" ref="stripePaymentTransactionService"/>
+        <property name="checkoutFacade" ref="checkoutFacade"/>
+        <property name="orderFacade" ref="orderFacade"/>
+    </bean>
+
+    <bean id="stripePaymentElementFacade"
+          class="com.cci.hybris.stripe.facades.elements.impl.DefaultStripePaymentElementFacade">
+        <property name="cartService" ref="cartService"/>
+        <property name="baseSiteService" ref="baseSiteService"/>
+        <property name="stripePaymentIntentService" ref="stripePaymentIntentService"/>
+        <property name="stripeConfigurationService" ref="stripeConfigurationService"/>
+        <property name="calculatorStrategy" ref="calculatorStrategy"/>
+        <property name="stripePaymentLifecycleService" ref="stripePaymentLifecycleService"/>
+        <property name="stripePaymentTransactionService" ref="stripePaymentTransactionService"/>
+        <property name="checkoutFacade" ref="checkoutFacade"/>
+        <property name="orderFacade" ref="orderFacade"/>
+    </bean>
+
+    <bean id="stripeRefundFacade"
+          class="com.cci.hybris.stripe.facades.refund.impl.DefaultStripeRefundFacade">
+        <constructor-arg name="baseStoreService" ref="baseStoreService"/>
+        <constructor-arg name="userService" ref="userService"/>
+        <constructor-arg name="checkoutCustomerStrategy" ref="checkoutCustomerStrategy"/>
+        <constructor-arg name="customerAccountService" ref="customerAccountService"/>
+        <constructor-arg name="commerceOrderService" ref="commerceOrderService"/>
+        <constructor-arg name="stripePaymentLifecycleService" ref="stripePaymentLifecycleService"/>
+        <constructor-arg name="calculatorStrategy" ref="calculatorStrategy"/>
+    </bean>
+
+    <bean id="stripePaymentPlaceOrderMethodHook"
+          class="com.cci.hybris.stripe.facades.order.hook.impl.StripePaymentPlaceOrderMethodHook">
+        <constructor-arg ref="stripePaymentTransactionService"/>
+    </bean>
+
+    <bean id="stripePaymentPlaceOrderMethodHookMergeDirective"
+          depends-on="commercePlaceOrderMethodHooks"
+          parent="listMergeDirective">
+        <property name="add" ref="stripePaymentPlaceOrderMethodHook"/>
+    </bean>
+
+</beans>

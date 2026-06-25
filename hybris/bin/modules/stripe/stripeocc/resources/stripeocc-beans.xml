@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- SPDX-License-Identifier: MIT -->
+<beans>
+
+	<bean class="com.cci.hybris.stripe.occ.dto.StripeCheckoutSessionWsDTO">
+		<description>OCC response for Stripe Checkout Session details.</description>
+		<hints>
+			<hint name="wsRelated"/>
+		</hints>
+		<property name="id" type="String"/>
+		<property name="url" type="String"/>
+		<property name="status" type="String"/>
+		<property name="paymentStatus" type="String"/>
+		<property name="clientReferenceId" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.occ.dto.StripePublicConfigurationWsDTO">
+		<description>OCC response for public Stripe configuration.</description>
+		<hints>
+			<hint name="wsRelated"/>
+		</hints>
+		<property name="publishableKey" type="String"/>
+		<property name="paymentOptionId" type="String"/>
+		<property name="paymentMethod" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.occ.dto.StripePaymentElementWsDTO">
+		<description>OCC response for Stripe Payment Elements bootstrap data.</description>
+		<hints>
+			<hint name="wsRelated"/>
+		</hints>
+		<property name="id" type="String"/>
+		<property name="clientSecret" type="String"/>
+		<property name="status" type="String"/>
+		<property name="amount" type="Long"/>
+		<property name="currency" type="String"/>
+		<property name="clientReferenceId" type="String"/>
+		<property name="publishableKey" type="String"/>
+		<property name="paymentOptionId" type="String"/>
+		<property name="paymentMethod" type="String"/>
+		<property name="formattedAmount" type="String"/>
+		<property name="returnUrl" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.occ.dto.StripeRefundWsDTO">
+		<description>OCC response for Stripe refund creation details.</description>
+		<hints>
+			<hint name="wsRelated"/>
+		</hints>
+		<property name="id" type="String"/>
+		<property name="paymentIntentId" type="String"/>
+		<property name="status" type="String"/>
+		<property name="amount" type="Long"/>
+		<property name="currency" type="String"/>
+		<property name="formattedAmount" type="String"/>
+		<property name="orderCode" type="String"/>
+		<property name="paymentReference" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.occ.dto.StripeRefundRequestWsDTO">
+		<description>OCC request for creating a Stripe refund.</description>
+		<hints>
+			<hint name="wsRelated"/>
+		</hints>
+		<property name="paymentReference" type="String"/>
+		<property name="amount" type="java.math.BigDecimal"/>
+	</bean>
+
+</beans>

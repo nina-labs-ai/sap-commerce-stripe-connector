@@ -1,0 +1,43 @@
+{
+  "name": "sap-commerce-stripe-connector",
+  "displayName": "SAP Commerce Stripe Connector",
+  "version": "2211-jdk21-2026.06.25",
+  "license": "MIT",
+  "nonAffiliation": "This project is not affiliated with, sponsored by, or endorsed by Stripe, Inc. Stripe is a trademark of Stripe, Inc.",
+  "compatibility": {
+    "sapCommerce": "2211-jdk21.7",
+    "java": "21",
+    "spartacus": "2211.31.1",
+    "angular": "17.3",
+    "stripeJava": "33.1.0",
+    "stripeJs": "5.10.0"
+  },
+  "hybris": {
+    "modulePath": "hybris/bin/modules/stripe",
+    "extensions": [
+      "stripeservices",
+      "stripefacades",
+      "stripeocc",
+      "stripeevents",
+      "stripefulfilmentprocess",
+      "stripebackoffice",
+      "stripeocctests",
+      "stripetest"
+    ],
+    "excludedExtensions": [
+      {
+        "name": "stripespartacussampledata",
+        "reason": "Optional sample-data layer is not required by the validated b2c_acc_plus_stripe recipe."
+      }
+    ]
+  },
+  "installer": {
+    "recipe": "installer/recipes/b2c_acc_plus_stripe/build.gradle"
+  },
+  "storefront": {
+    "package": "js-storefront/stripe-spartacus-connector"
+  },
+  "webhook": {
+    "localForwarding": "stripe listen --forward-to http://127.0.0.1:9001/stripeevents/webhooks/stripe"
+  }
+}

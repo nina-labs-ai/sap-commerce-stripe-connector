@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+
+    <extension abstractclassprefix="Generated" classprefix="StripeOcc" jaloLogicFree="true" managername="StripeOccManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="stripeocc" usemaven="false">
+
+        <requires-extension name="commercewebservices"/>
+        <requires-extension name="cmsocc"/>
+        <requires-extension name="stripefacades"/>
+
+        <coremodule generated="true" manager="com.cci.hybris.stripe.occ.jalo.StripeOccManager" packageroot="com.cci.hybris.stripe.occ"/>
+
+    </extension>
+
+</extensioninfo>

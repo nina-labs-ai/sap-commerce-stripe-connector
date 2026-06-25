@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+
+    <extension abstractclassprefix="Generated" classprefix="Stripeevents" jaloLogicFree="true" managername="StripeeventsManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="stripeevents" usemaven="false">
+
+        <requires-extension name="cms2"/>
+        <requires-extension name="stripeservices"/>
+        <requires-extension name="webhookservices"/>
+        <requires-extension name="webservicescommons"/>
+
+        <coremodule generated="true" manager="com.cci.hybris.stripe.events.jalo.StripeeventsManager" packageroot="com.cci.hybris.stripe.events"/>
+
+        <webmodule jspcompile="false" webroot="/stripeevents"/>
+
+    </extension>
+
+</extensioninfo>

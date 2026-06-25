@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- SPDX-License-Identifier: MIT -->
+<beans>
+
+	<bean class="com.cci.hybris.stripe.services.data.StripeCheckoutSessionData">
+		<description>Internal Checkout Session payload returned from Stripe services.</description>
+		<property name="id" type="String"/>
+		<property name="url" type="String"/>
+		<property name="status" type="String"/>
+		<property name="paymentStatus" type="String"/>
+		<property name="clientReferenceId" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.services.data.StripePaymentIntentData">
+		<description>Internal PaymentIntent payload returned from Stripe services.</description>
+		<property name="id" type="String"/>
+		<property name="clientSecret" type="String"/>
+		<property name="status" type="String"/>
+		<property name="amount" type="Long"/>
+		<property name="currency" type="String"/>
+		<property name="clientReferenceId" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.services.data.StripeRefundData">
+		<description>Internal refund payload returned from Stripe services.</description>
+		<property name="id" type="String"/>
+		<property name="paymentIntentId" type="String"/>
+		<property name="status" type="String"/>
+		<property name="amount" type="Long"/>
+		<property name="currency" type="String"/>
+	</bean>
+
+</beans>

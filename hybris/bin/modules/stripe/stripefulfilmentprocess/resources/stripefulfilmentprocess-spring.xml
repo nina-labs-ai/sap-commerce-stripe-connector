@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           https://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/aop
+           https://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<import resource="/stripefulfilmentprocess/process/stripe-checkout-payment-process-spring.xml"/>
+	
+    <bean id="stripefulfilmentprocessSystemSetup" class="com.cci.hybris.stripe.fulfilmentprocess.setup.StripefulfilmentprocessSystemSetup">
+        <constructor-arg ref="stripefulfilmentprocessService"/>
+    </bean>
+
+    <bean id="stripefulfilmentprocessService" class="com.cci.hybris.stripe.fulfilmentprocess.service.impl.DefaultStripefulfilmentprocessService">
+        <property name="modelService" ref="modelService"/>
+        <property name="mediaService" ref="mediaService"/>
+        <property name="flexibleSearchService" ref="flexibleSearchService"/>
+    </bean>
+
+	<bean id="stripeCheckoutSessionPaymentStatusService"
+		  class="com.cci.hybris.stripe.fulfilmentprocess.service.impl.DefaultStripeCheckoutSessionPaymentStatusService"/>
+			
+</beans>

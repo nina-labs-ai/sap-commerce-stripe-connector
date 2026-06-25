@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+
+    <extension abstractclassprefix="Generated" classprefix="StripeServices" jaloLogicFree="true" managername="StripeServicesManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="stripeservices" usemaven="true">
+
+        <requires-extension name="acceleratorservices"/>
+        <requires-extension name="commerceservices"/>
+        <requires-extension name="opfservices"/>
+        <requires-extension name="webhookservices"/>
+
+        <coremodule generated="true" manager="com.cci.hybris.stripe.services.jalo.StripeServicesManager" packageroot="com.cci.hybris.stripe.services"/>
+
+    </extension>
+
+</extensioninfo>

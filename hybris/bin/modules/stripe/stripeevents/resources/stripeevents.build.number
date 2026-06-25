@@ -1,0 +1,11 @@
+#Ant properties
+#Tue Feb 03 18:22:21 CET 2026
+builddate=20260203 1817
+description=stripeevents
+group.id=de.hybris.platform
+module.name=platform-module
+name=stripeevents
+releasedate=20251210 1158
+vendor=hybris
+version=2211-jdk21.7
+version.api=2211-jdk21

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+       
+    <extension abstractclassprefix="Generated" classprefix="Stripetest" jaloLogicFree="true" managername="StripetestManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="stripetest" usemaven="false">
+          
+      
+        <requires-extension name="odata2services"/>
+        <requires-extension name="stripeservices"/>
+        <requires-extension name="stripeevents"/>
+
+        <coremodule generated="true" manager="com.cci.hybris.stripe.test.jalo.StripetestManager" packageroot="com.cci.hybris.stripe.test"/>
+           
+    </extension>
+          
+
+</extensioninfo>

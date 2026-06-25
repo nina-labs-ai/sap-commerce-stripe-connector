@@ -1,0 +1,57 @@
+<section class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-7">
+      <h1 class="mb-3">Stripe Checkout status</h1>
+      <p class="text-muted mb-4">
+        This page refreshes the Stripe Checkout Session through OCC after the
+        browser returns from Stripe.
+      </p>
+
+      <div *ngIf="isLoading" class="card">
+        <div class="card-body">
+          <p class="mb-0">
+            {{
+              isPlacingOrder
+                ? 'Payment confirmed. Placing the SAP Commerce order…'
+                : 'Refreshing Stripe payment status…'
+            }}
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading && session" class="card">
+        <div class="card-body">
+          <div
+            class="alert mb-4"
+            [ngClass]="isPaid() ? 'alert-success' : 'alert-warning'"
+          >
+            <strong>{{ isPaid() ? 'Payment confirmed' : 'Payment still pending' }}</strong>
+            <span class="d-block mt-2">
+              Stripe session {{ session.id }} returned
+              <code>{{ session.status || 'unknown' }}</code>
+              /
+              <code>{{ session.paymentStatus || 'unknown' }}</code>.
+            </span>
+          </div>
+
+          <dl class="row mb-4">
+            <dt class="col-sm-4">Session</dt>
+            <dd class="col-sm-8"><code>{{ session.id }}</code></dd>
+
+            <dt class="col-sm-4">Client reference</dt>
+            <dd class="col-sm-8">{{ session.clientReferenceId || 'n/a' }}</dd>
+          </dl>
+
+          <p class="mb-0 text-muted">
+            Webhooks remain the backend source of truth. If the status has not
+            settled yet, reload this page after Stripe delivers the event.
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading && errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
+    </div>
+  </div>
+</section>

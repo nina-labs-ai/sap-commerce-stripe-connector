@@ -1,0 +1,133 @@
+<section class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <h2 class="mb-3">Stripe payment</h2>
+      <p class="mb-4 text-muted">
+        Choose between the existing hosted Stripe Checkout redirect and inline
+        Stripe Payment Elements for the current SAP Commerce checkout step.
+      </p>
+
+      <ng-container *ngIf="cart$ | async as cart">
+        <div class="card mb-4">
+          <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <h3 class="h5 mb-1">apparel-uk-spa cart</h3>
+                <p class="mb-0 text-muted">
+                  Cart {{ cart.code || 'current' }}
+                </p>
+              </div>
+              <div class="text-end">
+                <p class="mb-1 small text-uppercase text-muted">Total</p>
+                <strong>{{ cart.totalPrice?.formattedValue }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+
+      <div class="btn-group mb-4" role="group" aria-label="Stripe payment mode">
+        <button
+          class="btn"
+          type="button"
+          [ngClass]="mode === 'checkout' ? 'btn-primary' : 'btn-outline-primary'"
+          [disabled]="isLoading"
+          (click)="selectMode('checkout')"
+        >
+          Hosted Checkout
+        </button>
+        <button
+          class="btn"
+          type="button"
+          [ngClass]="mode === 'elements' ? 'btn-primary' : 'btn-outline-primary'"
+          [disabled]="isLoading"
+          (click)="selectMode('elements')"
+        >
+          Payment Elements
+        </button>
+      </div>
+
+      <div *ngIf="mode === 'checkout'" class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+            <div>
+              <p class="small text-uppercase text-muted mb-2">Payment Option</p>
+              <h3 class="h5 mb-2">Hosted redirect</h3>
+              <p class="mb-0 text-muted">
+                Uses the existing Stripe OCC checkout session endpoint and
+                redirects the shopper to Stripe's hosted checkout page.
+              </p>
+            </div>
+            <button
+              class="btn btn-primary"
+              type="button"
+              [disabled]="isLoading || !checkoutConfiguration"
+              (click)="continueWithSelectedMode()"
+            >
+              <span *ngIf="!isLoading">Continue to Stripe</span>
+              <span *ngIf="isLoading">Redirecting…</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="mode === 'elements'" class="card mb-4">
+        <div class="card-body">
+          <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap mb-3">
+            <div>
+              <p class="small text-uppercase text-muted mb-2">Payment Option</p>
+              <h3 class="h5 mb-2">Inline Payment Elements</h3>
+              <p class="mb-0 text-muted">
+                Uses the Stripe PaymentIntent OCC endpoints and confirms the
+                payment directly inside the Spartacus checkout step.
+              </p>
+            </div>
+            <button
+              class="btn btn-primary"
+              type="button"
+              [disabled]="isLoading || isPreparingElements || !paymentElementIntent"
+              (click)="continueWithSelectedMode()"
+            >
+              <span *ngIf="!isLoading">Confirm payment</span>
+              <span *ngIf="isLoading">Processing…</span>
+            </button>
+          </div>
+
+          <div *ngIf="isPreparingElements" class="alert alert-info mb-3">
+            Preparing Stripe Payment Elements…
+          </div>
+
+          <div *ngIf="paymentElementIntent" class="mb-3">
+            <p class="mb-2 text-muted">
+              Stripe intent <code>{{ paymentElementIntent.id }}</code>
+              <span *ngIf="paymentElementIntent.formattedAmount">
+                for {{ paymentElementIntent.formattedAmount }}
+              </span>
+            </p>
+            <div
+              #paymentElementHost
+              class="border rounded p-3 bg-white"
+              style="min-height: 72px"
+            ></div>
+          </div>
+
+          <p class="mb-0 text-muted small">
+            If Stripe requires extra authentication, it will return to
+            <code>stripe/elements/return</code>
+            before SAP Commerce places the order.
+          </p>
+        </div>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+        {{ errorMessage }}
+      </div>
+
+      <div class="d-flex justify-content-between gap-3 flex-wrap">
+        <button class="btn btn-secondary" type="button" (click)="back()">
+          Back
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

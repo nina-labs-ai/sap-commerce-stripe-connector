@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><testclasses><stripeevents><testclass>com.cci.hybris.stripe.events.controllers.AbstractStripeWebhookWebIntegrationSupport</testclass><testclass>com.cci.hybris.stripe.events.controllers.StripeWebhookControllerIntegrationTest</testclass></stripeevents></testclasses>

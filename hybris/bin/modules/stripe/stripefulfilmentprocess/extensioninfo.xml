@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+       
+    <extension abstractclassprefix="Generated" classprefix="Stripefulfilmentprocess" jaloLogicFree="true" managername="StripefulfilmentprocessManager" managersuperclass="de.hybris.platform.jalo.extension.Extension" name="stripefulfilmentprocess" usemaven="false">
+          
+      
+        <requires-extension name="acceleratorservices"/>
+        <requires-extension name="ticketsystem"/>
+        <requires-extension name="stripeservices"/>
+
+        <coremodule generated="true" manager="com.cci.hybris.stripe.fulfilmentprocess.jalo.StripefulfilmentprocessManager" packageroot="com.cci.hybris.stripe.fulfilmentprocess"/>
+           
+    </extension>
+          
+
+</extensioninfo>

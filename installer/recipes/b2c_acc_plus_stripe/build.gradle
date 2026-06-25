@@ -1,0 +1,203 @@
+apply plugin: 'installer-platform-plugin'
+apply plugin: 'installer-addon2-plugin'
+
+def pl = platform {
+    localProperties {
+        property 'recaptcha.publickey', ''
+        property 'recaptcha.privatekey', ''
+        property 'googleApiKey', ''
+        property 'stripe.secret.key', 'insert your secret key'
+        property 'stripe.publishable.key', 'insert your publishable key'
+        property 'stripe.webhook.secret', 'insert your webhook signing secret'
+        property 'stripe.checkout.success.url',
+                'http://apparel-uk.local:4200/apparel-uk-spa/en/GBP/stripe/checkout/return?session_id={CHECKOUT_SESSION_ID}'
+        property 'stripe.checkout.cancel.url',
+                'http://apparel-uk.local:4200/apparel-uk-spa/en/GBP/stripe/checkout/cancel?session_id={CHECKOUT_SESSION_ID}'
+        property 'stripe.elements.return.url',
+                'http://apparel-uk.local:4200/apparel-uk-spa/en/GBP/stripe/elements/return'
+    }
+
+    afterSetup {
+        ensureAdminPasswordSet()
+    }
+
+    extensions {
+        extName 'adaptivesearchsolr'
+        extName 'adaptivesearchbackoffice'
+        extName 'adaptivesearchsamplesaddon'
+        extName 'adaptivesearchwebservices'
+        extName 'commerceservicesbackoffice'
+        extName 'solrfacetsearchbackoffice'
+        extName 'solrserver'
+        extName 'yacceleratorstorefront'
+
+        extName 'electronicsstore'
+        extName 'apparelstore'
+
+        extName 'commercewebservices'
+        extName 'acceleratorocc'
+
+        extName 'captchaaddon'
+        extName 'commerceorgsamplesaddon'
+        extName 'orderselfserviceaddon'
+
+        extName 'rulebuilderbackoffice'
+        extName 'couponbackoffice'
+        extName 'droolsruleengineservices'
+        extName 'couponfacades'
+        extName 'couponservices'
+        extName 'promotionenginesamplesaddon'
+
+        extName 'assistedservicestorefront'
+        extName 'assistedservicewebservices'
+        extName 'assistedserviceyprofileaddon'
+        extName 'assistedservicecustomerinterestsaddon'
+        extName 'assistedservicepromotionaddon'
+
+        extName 'customerticketingaddon'
+        extName 'customersupportbackoffice'
+
+        extName 'profiletagaddon'
+        extName 'profileservices'
+
+        extName 'textfieldconfiguratortemplatebackoffice'
+        extName 'textfieldconfiguratortemplateaddon'
+
+        extName 'cmswebservices'
+        extName 'smarteditwebservices'
+        extName 'cmssmarteditwebservices'
+        extName 'permissionswebservices'
+        extName 'smarteditaddon'
+        extName 'cmssmartedit'
+        extName 'cmsbackoffice'
+        extName 'cmsocc'
+
+        extName 'consignmenttrackingaddon'
+        extName 'consignmenttrackingmock'
+        extName 'consignmenttrackingbackoffice'
+        extName 'consignmenttrackingocc'
+
+        extName 'notificationaddon'
+        extName 'customerinterestsaddon'
+        extName 'stocknotificationaddon'
+        extName 'configurablebundleaddon'
+        extName 'customerinterestsocc'
+        extName 'notificationocc'
+
+        extName 'previewpersonalizationweb'
+        extName 'personalizationcmsweb'
+        extName 'personalizationsmartedit'
+        extName 'personalizationpromotionssmartedit'
+        extName 'personalizationsampledataaddon'
+        extName 'personalizationpromotionssampledataaddon'
+        extName 'personalizationyprofile'
+        extName 'personalizationpromotions'
+        extName 'personalizationpromotionsweb'
+        extName 'personalizationservicesbackoffice'
+        extName 'personalizationpromotionsbackoffice'
+        extName 'personalizationcmsbackoffice'
+        extName 'personalizationintegrationbackoffice'
+        extName 'personalizationsearchbackoffice'
+        extName 'personalizationsearchsmartedit'
+        extName 'personalizationsearchweb'
+        extName 'personalizationsearchsamplesaddon'
+        extName 'personalizationyprofilesampledataaddon'
+        extName 'personalizationaddon'
+
+        extName 'pcmbackofficesamplesaddon'
+
+        extName 'xyformsbackoffice'
+        extName 'xyformsstorefrontcommons'
+        extName 'xyformssamples'
+        extName 'xyformsweb'
+        extName 'platformbackoffice'
+        extName 'orbeonweb'
+
+        extName 'kymaintegrationbackoffice'
+
+        extName 'outboundservices'
+        extName 'outboundsync'
+        extName 'odata2webservices'
+        extName 'integrationbackoffice'
+        extName 'integrationmonitoringbackoffice'
+        extName 'outboundsyncbackoffice'
+        extName 'swaggerintegration'
+        extName 'webhookservices'
+
+        extName 'merchandisingaddon'
+        extName 'merchandisingcmswebservices'
+        extName 'merchandisingsmartedit'
+        extName 'merchandisingservices'
+        extName 'merchandisingservicesbackoffice'
+        extName 'merchandisingstorefrontsampledataaddon'
+        extName 'spartacussampledataaddon'
+
+        extName 'opfservices'
+        extName 'opffacades'
+        extName 'stripeservices'
+        extName 'stripefacades'
+        extName 'stripeocc'
+        extName 'stripeocctests'
+        extName 'stripeevents'
+        extName 'stripefulfilmentprocess'
+        extName 'stripebackoffice'
+        extName 'stripetest'
+
+        // Uncomment if spartacussampledata is available in the local Commerce installation.
+        // extName 'spartacussampledata'
+        // extName 'stripespartacussampledata'
+    }
+
+    addons {
+        forStoreFronts('yacceleratorstorefront') {
+            names('captchaaddon', 'commerceorgsamplesaddon', 'assistedservicestorefront',
+                    'assistedservicecustomerinterestsaddon', 'assistedserviceyprofileaddon',
+                    'assistedservicepromotionaddon', 'customerticketingaddon',
+                    'textfieldconfiguratortemplateaddon', 'smarteditaddon',
+                    'consignmenttrackingaddon', 'notificationaddon', 'customerinterestsaddon',
+                    'stocknotificationaddon', 'orderselfserviceaddon',
+                    'adaptivesearchsamplesaddon', 'configurablebundleaddon',
+                    'pcmbackofficesamplesaddon', 'xyformssamples', 'xyformsstorefrontcommons',
+                    'personalizationyprofilesampledataaddon', 'personalizationaddon',
+                    'profiletagaddon', 'merchandisingaddon', 'spartacussampledataaddon',
+                    'merchandisingstorefrontsampledataaddon')
+            template 'yacceleratorstorefront'
+        }
+    }
+}
+
+task setup {
+    doLast {
+        pl.setup()
+    }
+}
+
+task buildSystem(dependsOn: setup) {
+    doLast {
+        pl.build()
+    }
+}
+
+task initialize(dependsOn: buildSystem) {
+    doLast {
+        pl.initialize()
+    }
+}
+
+task start {
+    doLast {
+        pl.start()
+    }
+}
+
+task startInBackground {
+    doLast {
+        pl.startInBackground()
+    }
+}
+
+task stopInBackground {
+    doLast {
+        pl.stopInBackground()
+    }
+}

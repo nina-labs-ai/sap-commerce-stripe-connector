@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!-- SPDX-License-Identifier: MIT -->
+<beans>
+
+	<bean class="com.cci.hybris.stripe.facades.data.StripeCheckoutSessionFacadeData">
+		<description>Facade payload for Stripe Checkout Session details.</description>
+		<property name="id" type="String"/>
+		<property name="url" type="String"/>
+		<property name="status" type="String"/>
+		<property name="paymentStatus" type="String"/>
+		<property name="clientReferenceId" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.facades.data.StripePublicConfigurationFacadeData">
+		<description>Public frontend configuration for Stripe.</description>
+		<property name="publishableKey" type="String"/>
+		<property name="paymentOptionId" type="String"/>
+		<property name="paymentMethod" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.facades.data.StripePaymentElementFacadeData">
+		<description>Facade payload for Stripe Payment Elements bootstrap data.</description>
+		<property name="id" type="String"/>
+		<property name="clientSecret" type="String"/>
+		<property name="status" type="String"/>
+		<property name="amount" type="Long"/>
+		<property name="currency" type="String"/>
+		<property name="clientReferenceId" type="String"/>
+		<property name="publishableKey" type="String"/>
+		<property name="paymentOptionId" type="String"/>
+		<property name="paymentMethod" type="String"/>
+		<property name="formattedAmount" type="String"/>
+		<property name="returnUrl" type="String"/>
+	</bean>
+
+	<bean class="com.cci.hybris.stripe.facades.data.StripeRefundFacadeData">
+		<description>Facade payload for Stripe refund creation details.</description>
+		<property name="id" type="String"/>
+		<property name="paymentIntentId" type="String"/>
+		<property name="status" type="String"/>
+		<property name="amount" type="Long"/>
+		<property name="currency" type="String"/>
+		<property name="formattedAmount" type="String"/>
+		<property name="orderCode" type="String"/>
+		<property name="paymentReference" type="String"/>
+	</bean>
+
+</beans>

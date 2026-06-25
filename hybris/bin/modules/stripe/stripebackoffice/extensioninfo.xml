@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- SPDX-License-Identifier: MIT -->
+<extensioninfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="extensioninfo.xsd">
+       
+    <extension abstractclassprefix="Generated" classprefix="Stripebackoffice" name="stripebackoffice" usemaven="false">
+        <requires-extension name="backoffice"/>
+        <requires-extension name="acceleratorbackoffice"/>
+        <requires-extension name="customersupportbackoffice"/>
+        <requires-extension name="stripeservices"/>
+        <requires-extension name="stripeevents"/>
+
+        <coremodule generated="true" manager="com.cci.hybris.stripe.backoffice.jalo.StripebackofficeManager" packageroot="com.cci.hybris.stripe.backoffice"/>
+
+        <meta key="backoffice-module" value="true"/>
+           
+    </extension>
+          
+
+</extensioninfo>

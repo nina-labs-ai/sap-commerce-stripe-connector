@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<process xmlns="http://www.hybris.de/xsd/processdefinition"
+         start="checkStripeCheckoutSessionPayment"
+         name="stripe-checkout-payment-process"
+         processClass="de.hybris.platform.orderprocessing.model.OrderProcessModel">
+
+    <action id="checkStripeCheckoutSessionPayment" bean="stripeCheckCheckoutSessionPaymentAction">
+        <transition name="OK" to="success"/>
+        <transition name="WAIT" to="waitForStripePayment"/>
+        <transition name="NOK" to="failed"/>
+    </action>
+
+    <wait id="waitForStripePayment" then="checkStripeCheckoutSessionPayment" prependProcessCode="false">
+        <event>${process.code}_STRIPE_PAYMENT_UPDATED</event>
+    </wait>
+
+    <end id="success" state="SUCCEEDED">Stripe Checkout Session payment is complete.</end>
+    <end id="failed" state="FAILED">Stripe Checkout Session payment did not complete.</end>
+
+</process>
